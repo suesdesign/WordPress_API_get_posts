@@ -12,7 +12,7 @@ Version: 1.0
 Author URI: http://suesdesign.co.uk/
 */
 
-class Suesdesign_get_posts
+class Suesdesign_Get_Posts
 {
     // GET the remote site
     private $url = 'http://localhost/wordpresstest/wp-json/wp/v2/posts';
@@ -43,4 +43,4 @@ class Suesdesign_get_posts
     }
 }
 
-new Suesdesign_get_posts();
+new Suesdesign_Get_Posts();
