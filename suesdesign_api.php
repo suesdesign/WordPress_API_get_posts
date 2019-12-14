@@ -15,7 +15,7 @@ Author URI: http://suesdesign.co.uk/
 class Suesdesign_Get_Posts
 {
     // GET the remote site
-    private $url = 'http://localhost/wordpresstest/wp-json/wp/v2/posts';
+    public $url = 'http://localhost/wordpresstest/wp-json/wp/v2/posts';
     public function __construct() {
     // Add_shortcode    
         add_shortcode('get_json', array($this, 'get_json_posts'));
@@ -24,16 +24,15 @@ class Suesdesign_Get_Posts
         $this->response = wp_remote_get( $this->url );
         $posts = json_decode( wp_remote_retrieve_body( $this->response ) );
         $allposts = '';
-    // Check for error
+        // Check for error
         if ( !$posts  ) {
-            return sprintf( '<p>The URL %1s could not be retrieved.</p>', $this->url ); //get just the body
+            return sprintf( '<p>The URL %1s could not be retrieved.</p>', $this->url );
         } else {
-    // Loop through posts
-        
+        // Loop through posts
         foreach ( $posts as $post ) {
-    // Format the date.
+        // Format the date.
     		$fordate = date( 'n/j/Y', strtotime( $post->modified ) );
-    // Show a title, post date and content
+        // Show a title, post date and content
     		$allposts .= '<h2>' . $post->title->rendered . '</h2>';
             $allposts .= '<p>' . $fordate . '</p>';
     		$allposts .= $post->content->rendered;
